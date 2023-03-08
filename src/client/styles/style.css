@@ -178,6 +178,25 @@
   background: var(--color-btn-hover);
 }
 
+.app .control-btn #processing-animation {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fade-in 1s;
+}
+
+.app .control-btn .processing-animation-element {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border-right: solid 10px var(--primary-color);
+  border-bottom: solid 10px var(--text-color);
+  border-left: solid 10px var(--text-color);
+  border-top: solid 10px var(--text-color);
+  animation: processing 1s infinite;
+}
+
 /* responsive  */
 @media screen and (max-width: 910px) {
   .app .link {
@@ -240,5 +259,15 @@
 @keyframes progress-bar {
   0% {
     width: 0%;
+  }
+}
+
+@keyframes processing {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -3,6 +3,8 @@ let controlBtn = document.getElementById("control-btn");
 let selectBtn = document.querySelector("input[type=file]");
 let selectMessage = document.getElementById("choose-file-msg");
 let fileInfoContainer = document.querySelector(".selected-file");
+let processingAnimation = document.getElementById("processing-animation");
+
 // set control button state
 controlBtn.addEventListener("click", () => {
   let state = checkControlState("control-btn");
@@ -28,14 +30,22 @@ function checkControlState(id) {
   }
 }
 
-function startServer() {
+async function startServer() {
+  controlBtn.style.display = "none";
+  processingAnimation.style.display = "flex";
+
+  await sleep(5000);
+  processingAnimation.style.display = "none";
+
   controlBtn.innerText = "Terminate Server";
   controlBtn.style.background = "#f36760";
+  controlBtn.style.display = "flex";
 }
 
 function terminateServer() {
-  controlBtn.innerText = "Start Server";
-  controlBtn.style.background = "rgb(87, 205, 168)";
+  // controlBtn.innerText = "Start Server";
+  // controlBtn.style.background = "rgb(87, 205, 168)";
+  location.reload();
 }
 
 function handleSelectFile() {
@@ -67,4 +77,8 @@ function formatBytes(bytes) {
   } else {
     return (bytes / 1073741824).toFixed(2) + " GB";
   }
+}
+
+async function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
