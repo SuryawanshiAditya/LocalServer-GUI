@@ -1,50 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- fonts  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap"
-    rel="stylesheet">
+    <!-- styles -->
+    <link rel="stylesheet" href="styles/style.css" />
 
-  <!-- styles -->
-  <link rel="stylesheet" href="styles/style.css">
+    <!-- scripts  -->
+    <script src="scripts/script.js" defer></script>
+    <script src="scripts/handle-uploads.js" defer></script>
 
-  <!-- scripts  -->
-  <script src="scripts/script.js" defer> </script>
+    <title>LocalServer</title>
+  </head>
 
-  <title>LocalServer</title>
-</head>
-
-<body>
-  <div id="root">
-    <div class="title">
-      <h1>LocalServer</h1>
-    </div>
-
-    <div class="app">
-      <div class="upload">
-        <img src="assets/UploadIcon.png" alt="upload icon">
-        <label for="choose-file" id="choose-file-msg">Select a file to share</label>
-        <input type="file" id="choose-file">
+  <body>
+    <div id="root">
+      <div class="title">
+        <h1>LocalServer</h1>
       </div>
-      <div class="link">
-        <label for="shareable-link">Shareable Link</label>
-        <div class="link-wrapper">
-          <span id="shareable-link">http://bore.pub</span>
+
+      <div class="app">
+        <div class="upload">
+          <img src="assets/UploadIcon.png" alt="upload icon" />
+          <label for="choose-file" id="choose-file-msg"
+            >Select a file to share</label
+          >
+          <form
+            id="upload-form"
+            action="/upload-file"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input type="file" id="choose-file" name="file" />
+          </form>
         </div>
-        <img src="assets/copy-icon.svg" alt="copy icon">
-      </div>
-      <div class="control-btn">
-        <button id="control-btn">Start Server</button>
+        <div class="selected-file">
+          <div class="file-info">
+            <div class="fileName">shriram.png</div>
+            <div class="fileSize">32.32mb</div>
+          </div>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="link">
+          <label for="shareable-link">Shareable Link</label>
+          <div class="link-wrapper">
+            <span id="shareable-link">http://bore.pub</span>
+          </div>
+          <img src="assets/copy-icon.svg" alt="copy icon" />
+        </div>
+        <div class="control-btn">
+          <button id="control-btn">Start Server</button>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>

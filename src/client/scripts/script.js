@@ -15,12 +15,7 @@ controlBtn.addEventListener("click", () => {
 
 //handle select file
 selectBtn.addEventListener("change", (e) => {
-  let selectedFile = selectBtn.files[0];
-  console.log(selectedFile);
-  let fileName = selectedFile.name;
-  let fileSize = selectedFile.size;
-  console.log(fileName);
-  console.log(fileSize);
+  handleSelectFile();
 });
 
 // helper functions
@@ -44,5 +39,28 @@ function terminateServer() {
 }
 
 function handleSelectFile() {
-  selectMessage.innerText = selectBtn.value;
+  // data 
+  let selectedFile = selectBtn.files[0];
+  let fileName = selectedFile.name;
+  let fileSize = selectedFile.size;
+  fileSize = formatBytes(fileSize);
+
+  // frontend 
+  
+
+  console.log(selectedFile);
+  console.log(fileName);
+  console.log(fileSize);
+}
+
+function formatBytes(bytes) {
+  if (bytes < 1024) {
+    return bytes + " bytes";
+  } else if (bytes < 1048576) {
+    return (bytes / 1024).toFixed(2) + " KB";
+  } else if (bytes < 1073741824) {
+    return (bytes / 1048576).toFixed(2) + " MB";
+  } else {
+    return (bytes / 1073741824).toFixed(2) + " GB";
+  }
 }
