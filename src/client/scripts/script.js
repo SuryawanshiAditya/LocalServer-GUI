@@ -1,5 +1,7 @@
 // components
 let controlBtn = document.getElementById("control-btn");
+let selectBtn = document.querySelector("input[type=file]");
+let selectMessage = document.getElementById("choose-file-msg");
 
 // set control button state
 controlBtn.addEventListener("click", () => {
@@ -9,6 +11,16 @@ controlBtn.addEventListener("click", () => {
   } else if (state == "down") {
     startServer();
   }
+});
+
+//handle select file
+selectBtn.addEventListener("change", (e) => {
+  let selectedFile = selectBtn.files[0];
+  console.log(selectedFile);
+  let fileName = selectedFile.name;
+  let fileSize = selectedFile.size;
+  console.log(fileName);
+  console.log(fileSize);
 });
 
 // helper functions
@@ -29,4 +41,8 @@ function startServer() {
 function terminateServer() {
   controlBtn.innerText = "Start Server";
   controlBtn.style.background = "rgb(87, 205, 168)";
+}
+
+function handleSelectFile() {
+  selectMessage.innerText = selectBtn.value;
 }
