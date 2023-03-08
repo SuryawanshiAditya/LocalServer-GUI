@@ -32,11 +32,11 @@ async function forward_port() {
     // linux
     else if (platform === 'linux') {
 
-        let bore = 'server/port-forwarding/service/bore'
+        let bore = 'src/server/port-forwarding/service/bore'
 
 
         // prot forwarding
-        exec(`${bore} local 7777 --to bore.pub > server/port-forwarding/script/log.txt`, (error, stdout, stderr) => {
+        exec(`${bore} local 7777 --to bore.pub > src/server/port-forwarding/data/log.txt`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error: ${error}`);
                 return;
@@ -45,7 +45,7 @@ async function forward_port() {
 
         // get the link from logs
         setTimeout(() => {
-            exec(`echo $(cat server/port-forwarding/script/log.txt) | grep -o -P 'bore.pub.{0,6}' > server/port-forwarding/script/link.txt`, (error, stdout, stderr) => {
+            exec(`echo $(cat src/server/port-forwarding/data/log.txt) | grep -o -P 'bore.pub.{0,6}' > src/server/port-forwarding/data/link.txt`, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error: ${error}`);
                     return;
@@ -53,14 +53,14 @@ async function forward_port() {
             });
 
             setTimeout(() => {
-                exec(`echo $(cat server/port-forwarding/script/link.txt | grep -o -P 'bore.pub:.{0,6}') > server/port-forwarding/script/link.txt`, (error, stdout, stderr) => {
+                exec(`echo $(cat src/server/port-forwarding/data/link.txt | grep -o -P 'bore.pub:.{0,6}') > src/server/port-forwarding/data/link.txt`, (error, stdout, stderr) => {
                     if (error) {
                         console.error(`Error: ${error}`);
                         return;
                     }
                 });
-            }, 1000);
-        }, 1000);
+            }, 2000);
+        }, 2000);
     }
 
 }

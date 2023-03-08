@@ -10,13 +10,18 @@ const multer = require('multer');
 // function to forward the local port
 const forward_port = require("./port-forwarding/script/forward-port");
 
+// exec module to execute the system commands
+const {
+  exec
+} = require('child_process');
+
 // Set up Multer for file server/uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'server/uploads/');
+    cb(null, 'src/server/uploads/');
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, "LocalServer-file");
   },
 });
 const upload = multer({
@@ -31,9 +36,15 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Serve static files
+app.use(express.static('src/client/upload'));
+
+// Serve static files
+app.use(express.static('src/client/download'));
+
 // Serve the HTML file
 app.get('/upload', function (req, res) {
-  fs.readFile('client/upload.html', function (err, data) {
+  fs.readFile('src/client/upload/index.html', function (err, data) {
     if (err) {
       res.status(500).send('Error loading download.html');
     } else {
@@ -44,17 +55,23 @@ app.get('/upload', function (req, res) {
 
 // Serve the HTML file
 app.get('/download', function (req, res) {
-  fs.readFile('client/download.html', function (err, data) {
-    if (err) {
-      res.status(500).send('Error loading download.html');
-    } else {
-      res.type('html').send(data);
-    }
-  });
+  try {
+    //get the server status
+    fs.readFile('src/client/download/index.html', function (err, data) {
+      if (err) {
+        res.status(500).send('Error loading download.html');
+      } else {
+        res.type('html').send(data);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
 });
 
 // Serve static files
-app.use(express.static('client'));
+app.use(express.static('src/client/upload'));
 
 
 // Add a new endpoint for file server/uploads
@@ -67,7 +84,7 @@ app.post('/upload-file', upload.single('file'), (req, res) => {
 
 // list the uploads
 app.get('/all-files', function (req, res) {
-  fs.readdir('server/uploads', function (err, files) {
+  fs.readdir('src/server/uploads', function (err, files) {
     if (err) {
       res.status(500).send('Error reading files');
     } else {
@@ -80,7 +97,7 @@ app.get('/all-files', function (req, res) {
 
 // endpoint to download the given file
 app.get('/download-file/:filename', function (req, res) {
-  const filepath = `server/uploads/${req.params.filename}`;
+  const filepath = `src/server/uploads/${req.params.filename}`;
   fs.readFile(filepath, function (err, data) {
     if (err) {
       res.status(404).send('Error downloading file');
@@ -100,8 +117,9 @@ app.get("/generate-link", async (req, res) => {
   // wait for 5 sec to generate the link
   setTimeout(() => {
     try {
+
       // get the link from the link.txt file
-      const link = fs.readFileSync('server/port-forwarding/link.txt', 'utf8').toString().split('\n')[0];
+      const link = fs.readFileSync('src/server/port-forwarding/data/link.txt', 'utf8').toString().split('\n')[0];
 
       // send the response
       res.send(JSON.stringify({
@@ -121,6 +139,28 @@ app.get("/generate-link", async (req, res) => {
 
   }, 5000);
 });
+
+// // endpoint to terminate the server (forwarded port)
+// app.get("/terminate-server", async (req, res) => {
+
+//   try {
+//     // set the server status server-close
+//     fs.writeFile('src/server/port-forwarding/data/server-status.txt', "server-close");
+
+//     res.send({
+//       status: true,
+//       message: "server terminated"
+//     })
+
+//   } catch (error) {
+//     console.log(error);
+//     res.send({
+//       status: false,
+//       message: error
+//     })
+//   }
+
+// });
 
 
 // start listener on port 3000

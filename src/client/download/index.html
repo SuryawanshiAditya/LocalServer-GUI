@@ -1,132 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- fonts  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>LocalServer</title>
+  <!-- fonts  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap"
+    rel="stylesheet" />
 
-    <style>
-      :root {
-        --primary-color: rgb(87, 205, 168);
-        --btn-hover: rgb(79, 187, 153);
-        --text-color: rgb(65, 65, 65);
-      }
+  <title>LocalServer</title>
 
-      *,
-      *::before,
-      *::after {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: "Roboto", sans-serif;
-      }
+  <style>
+    :root {
+      --primary-color: rgb(87, 205, 168);
+      --btn-hover: rgb(79, 187, 153);
+      --text-color: rgb(65, 65, 65);
+    }
 
-      #root {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 100vh;
-        width: 100vw;
-        gap: 5rem;
-      }
+    *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Roboto", sans-serif;
+    }
 
-      .title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 10vh;
-        margin-bottom: 1rem;
-      }
+    #root {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      gap: 5rem;
+    }
 
+    .title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10vh;
+      margin-bottom: 1rem;
+    }
+
+    .title h1 {
+      color: var(--text-color);
+      font-weight: 700;
+      font-size: 5em;
+      animation: fade-in 3s;
+    }
+
+    .file-info-container {
+      margin-top: 1rem;
+      height: 10%;
+      width: 70%;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .file-info {
+      margin-inline: 15px;
+      width: 60%;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-color);
+    }
+
+    button {
+      border: none;
+      background: var(--primary-color);
+      padding: 1.5rem 4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 24px;
+      color: white;
+      transition: 0.3s all ease;
+    }
+
+    button:hover {
+      background: var(--btn-hover);
+      cursor: pointer;
+    }
+
+    .bar {
+      margin-top: 0.5rem;
+      height: 5px;
+      width: 60%;
+      background: var(--primary-color);
+    }
+
+    @media screen and (max-width: 550px) {
       .title h1 {
-        color: var(--text-color);
-        font-weight: 700;
-        font-size: 5em;
-        animation: fade-in 3s;
+        font-size: 3rem;
       }
+    }
+  </style>
+</head>
 
-      .file-info-container {
-        margin-top: 1rem;
-        height: 10%;
-        width: 70%;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      .file-info {
-        margin-inline: 15px;
-        width: 60%;
-        display: flex;
-        justify-content: space-between;
-        color: var(--text-color);
-      }
-
-      button {
-        border: none;
-        background: var(--primary-color);
-        padding: 1.5rem 4rem;
-        border-radius: 8px;
-        font-weight: 700;
-        font-size: 24px;
-        color: white;
-        transition: 0.3s all ease;
-      }
-
-      button:hover {
-        background: var(--btn-hover);
-        cursor: pointer;
-      }
-
-      .bar {
-        margin-top: 0.5rem;
-        height: 5px;
-        width: 60%;
-        background: var(--primary-color);
-      }
-
-      @media screen and (max-width: 550px) {
-        .title h1 {
-          font-size: 3rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="root">
-      <div class="title">
-        <h1>LocalServer</h1>
-      </div>
-      <div class="file-info-container">
-        <div class="file-info">
-          <div class="fileName">shriram.jpg</div>
-          <div class="fileSize">32.4MB</div>
-        </div>
-        <div class="bar"></div>
-      </div>
-      <div class="download-btn">
-        <button id="download-btn">Download</button>
-      </div>
+<body>
+  <div id="root">
+    <div class="title">
+      <h1>LocalServer</h1>
     </div>
+    <div class="file-info-container">
+      <div class="file-info">
+        <div class="fileName">shriram.jpg</div>
+        <div class="fileSize">32.4MB</div>
+      </div>
+      <div class="bar"></div>
+    </div>
+    <div class="download-btn">
+      <button id="download-btn"></a></button>
+    </div>
+  </div>
 
-    <script>
-      //   todo;
-    </script>
-  </body>
+  <script>
+    fetch('/all-files')
+      .then(response => response.json())
+      .then(data => {
+        const fileList = data.files;
+
+        // Iterate through the list of files and add them to the HTML
+        fileList.forEach(file => {
+          document.querySelector('#download-btn').innerHTML += `<a href="/download/${file}" download>Download</a><br>`;
+        });
+      });    </script>
+</body>
+
 </html>
