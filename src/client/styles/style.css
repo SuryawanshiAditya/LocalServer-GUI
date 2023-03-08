@@ -106,16 +106,28 @@
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
 
   display: flex;
-  /* justify-content: center; */
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  display: none;
 }
 
 .app .file-info {
   margin-inline: 15px;
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
   color: var(--text-color);
+}
+
+.app .progress-bar {
+  height: 5px;
+  background: var(--primary-color);
+  width: 95%;
+  border-radius: 50px;
+  animation: progress-bar 2s;
+  transform: translateX(1rem);
 }
 
 .app .link {
@@ -225,8 +237,8 @@
   }
 }
 
-@keyframes progress-bar{
-    0% {
-        width: 0%;
-    }
+@keyframes progress-bar {
+  0% {
+    width: 0%;
+  }
 }

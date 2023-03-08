@@ -2,7 +2,7 @@
 let controlBtn = document.getElementById("control-btn");
 let selectBtn = document.querySelector("input[type=file]");
 let selectMessage = document.getElementById("choose-file-msg");
-
+let fileInfoContainer = document.querySelector(".selected-file");
 // set control button state
 controlBtn.addEventListener("click", () => {
   let state = checkControlState("control-btn");
@@ -39,14 +39,18 @@ function terminateServer() {
 }
 
 function handleSelectFile() {
-  // data 
+  // data
   let selectedFile = selectBtn.files[0];
   let fileName = selectedFile.name;
   let fileSize = selectedFile.size;
   fileSize = formatBytes(fileSize);
 
-  // frontend 
-  
+  // frontend
+  let fileNameContainer = document.getElementById("displayFileName");
+  let fileSizeContainer = document.getElementById("displayFileSize");
+  fileNameContainer.innerText = fileName;
+  fileSizeContainer.innerText = fileSize;
+  fileInfoContainer.style.display = "flex";
 
   console.log(selectedFile);
   console.log(fileName);
