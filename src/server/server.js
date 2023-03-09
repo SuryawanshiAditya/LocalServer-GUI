@@ -15,13 +15,24 @@ const {
   exec
 } = require('child_process');
 
+// file path for file
+let reqFilePath;
+
 // Set up Multer for file server/uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'src/server/uploads/');
   },
   filename: function (req, file, cb) {
-    cb(null, "LocalServer-file");
+    cb(null, file.originalname);
+    // req.file is the file that was uploaded
+    exec(`zip src/server/uploads/local-server.zip "${"src/server/uploads/"+file.originalname}" && rm -f ${"src/server/uploads/"+file.originalname}`, (error, stdout, stderr) => {
+
+      if (error) {
+        console.error(`Error: ${error}`);
+        return;
+      }
+    });
   },
 });
 const upload = multer({
@@ -76,35 +87,28 @@ app.use(express.static('src/client/upload'));
 
 // Add a new endpoint for file server/uploads
 app.post('/upload-file', upload.single('file'), (req, res) => {
-  // req.file is the file that was uploaded
-  res.json({
-    file: req.file,
-  });
-});
 
-// list the uploads
-app.get('/all-files', function (req, res) {
-  fs.readdir('src/server/uploads', function (err, files) {
-    if (err) {
-      res.status(500).send('Error reading files');
-    } else {
-      res.json({
-        files,
-      });
-    }
+  res.json({
+    status: true,
+    file: req.file
   });
+
 });
 
 // endpoint to download the given file
-app.get('/download-file/:filename', function (req, res) {
-  const filepath = `src/server/uploads/${req.params.filename}`;
-  fs.readFile(filepath, function (err, data) {
+app.get('/download-file', function (req, res) {
+  // get the path for requested file
+  const filepath = `src/server/uploads/local-server.zip`;
+
+  // sent the requested file to client 
+  res.download(filepath, (err) => {
+
+    // if the file is not valid
     if (err) {
-      res.status(404).send('Error downloading file');
-    } else {
-      res.setHeader('Content-disposition', 'attachment; filename=' + req.params.filename);
-      res.setHeader('Content-type', 'application/octet-stream');
-      res.send(data);
+      res.status(404).send({
+        status: false,
+        message: "Unable to locate the file"
+      });
     }
   });
 });
@@ -164,6 +168,7 @@ app.get("/generate-link", async (req, res) => {
 
 
 // start listener on port 3000
+
 app.listen(7777, async () => {
   console.log('Server listening on port 7777');
 });

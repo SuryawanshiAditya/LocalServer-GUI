@@ -88,6 +88,7 @@
       transition: 0.3s all ease;
     }
 
+
     button:hover {
       background: var(--btn-hover);
       cursor: pointer;
@@ -105,6 +106,11 @@
         font-size: 3rem;
       }
     }
+
+    #download-btn a {
+      text-decoration: none;
+      color: white;
+    }
   </style>
 </head>
 
@@ -115,27 +121,19 @@
     </div>
     <div class="file-info-container">
       <div class="file-info">
-        <div class="fileName">shriram.jpg</div>
+        <div class="fileName">local-server.zip</div>
         <div class="fileSize">32.4MB</div>
       </div>
       <div class="bar"></div>
     </div>
     <div class="download-btn">
-      <button id="download-btn"></a></button>
+      <button id="download-btn"><a href="/download-file">Download</a></a></button>
     </div>
   </div>
 
   <script>
-    fetch('/all-files')
-      .then(response => response.json())
-      .then(data => {
-        const fileList = data.files;
 
-        // Iterate through the list of files and add them to the HTML
-        fileList.forEach(file => {
-          document.querySelector('#download-btn').innerHTML += `<a href="/download/${file}" download>Download</a><br>`;
-        });
-      });    </script>
+  </script>
 </body>
 
 </html>

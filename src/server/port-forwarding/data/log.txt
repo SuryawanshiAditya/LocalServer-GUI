@@ -1,12 +1,4 @@
-[2m2023-03-08T19:10:12.545391Z[0m [32m INFO[0m [2mbore_cli::client[0m[2m:[0m connected to server [3mremote_port[0m[2m=[0m35449
-[2m2023-03-08T19:10:12.545460Z[0m [32m INFO[0m [2mbore_cli::client[0m[2m:[0m listening at bore.pub:35449
-[2m2023-03-08T19:10:24.842522Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0me44511ac-12a5-447f-8cdc-f5845309a6c4[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m new connection
-[2m2023-03-08T19:10:25.310971Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0m4b482ff0-b612-4bcb-8f94-5fa5c000323f[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m new connection
-[2m2023-03-08T19:10:31.417092Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0me44511ac-12a5-447f-8cdc-f5845309a6c4[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m connection exited
-[2m2023-03-08T19:10:35.314983Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0m4b482ff0-b612-4bcb-8f94-5fa5c000323f[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m connection exited
-[2m2023-03-08T19:11:03.439498Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0mf32bad0e-8c1b-429b-b2d5-005f7dda2aa6[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m new connection
-[2m2023-03-08T19:11:04.040398Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0m1210026e-e216-45c1-a164-238e23f365d1[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m new connection
-[2m2023-03-08T19:11:04.273711Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0mbfbec3af-662a-4510-b07e-a72322bb584b[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m new connection
-[2m2023-03-08T19:11:09.772142Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0m1210026e-e216-45c1-a164-238e23f365d1[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m connection exited
-[2m2023-03-08T19:11:09.815539Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0mf32bad0e-8c1b-429b-b2d5-005f7dda2aa6[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m connection exited
-[2m2023-03-08T19:11:56.681918Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0mbfbec3af-662a-4510-b07e-a72322bb584b[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m connection exited
+[2m2023-03-09T09:10:23.514838Z[0m [32m INFO[0m [2mbore_cli::client[0m[2m:[0m connected to server [3mremote_port[0m[2m=[0m42301
+[2m2023-03-09T09:10:23.514907Z[0m [32m INFO[0m [2mbore_cli::client[0m[2m:[0m listening at bore.pub:42301
+[2m2023-03-09T09:12:09.984763Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0m5b87bf19-5023-4f64-9c22-127b61c5aa66[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m new connection
+[2m2023-03-09T09:12:12.301380Z[0m [32m INFO[0m [1mproxy[0m[1m{[0m[3mid[0m[2m=[0m5b87bf19-5023-4f64-9c22-127b61c5aa66[1m}[0m[2m:[0m [2mbore_cli::client[0m[2m:[0m connection exited
